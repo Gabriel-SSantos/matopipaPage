@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MATOPIPA — Promovendo a Inclusão Produtiva</title>
+<meta name="description" content="MATOPIPA é a plataforma de inclusão produtiva conduzida pelo cooperativismo, ligando o pequeno produtor à indústria e ao mercado.">
+
+<!--
+  Fotos: banco de imagens livre Pexels (licença gratuita, sem necessidade de atribuição) — pexels.com/license
+  Créditos: Gustavo Fring, shootsaga, RDNE Stock project, efrem efre. Troque por fotos próprias do projeto quando possível.
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --cream:      #F7F6EC;   /* fundo principal — algodão claro */
+    --cream-2:    #FFFFFF;   /* cartões */
+    --forest:     #2F4A2C;   /* verde-mata — títulos, rodapé, nav */
+    --leaf:       #5C8C42;   /* verde-folha — botões, links */
+    --leaf-light: #8FB36B;   /* verde-broto — ícones, detalhes */
+    --lime:       #DCEBA8;   /* verde-limão pastel — destaques, chips */
+    --sage:       #6E7C63;   /* texto secundário */
+    --clay:       #CC7A42;   /* terracota suave — acento pontual */
+    --line:       rgba(47,74,44,0.14);
+
+    --font-display: 'Fraunces', Georgia, serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    --container: 1180px;
+    --radius: 18px;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *, *::before, *::after{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+  }
+
+  body{
+    background:var(--cream);
+    color:var(--forest);
+    font-family:var(--font-body);
+    font-size:16px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  img,svg{ display:block; max-width:100%; }
+  a{ color:inherit; text-decoration:none; }
+  ul{ list-style:none; }
+
+  .container{ width:100%; max-width:var(--container); margin:0 auto; padding-inline:24px; }
+
+  section{ position:relative; padding:100px 0; }
+  section.tint{ background:#F1EFE0; }
+  @media (max-width:720px){ section{ padding:68px 0; } }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:var(--font-mono); font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--leaf); margin-bottom:16px;
+  }
+  .eyebrow::before{ content:""; width:7px; height:7px; background:var(--leaf); border-radius:50%; display:inline-block; }
+
+  h1,h2,h3{ font-family:var(--font-display); font-weight:700; letter-spacing:-0.01em; color:var(--forest); }
+  h1{ font-size:clamp(2.3rem, 5vw, 4rem); line-height:1.08; font-weight:600; }
+  h1 em{ font-style:italic; font-weight:500; color:var(--leaf); }
+  h2{ font-size:clamp(1.8rem, 3.2vw, 2.7rem); line-height:1.14; margin-bottom:18px; }
+  h3{ font-size:1.18rem; font-weight:700; margin-bottom:6px; }
+
+  p.lead{ font-size:1.14rem; color:var(--sage); max-width:600px; }
+  p{ color:var(--sage); }
+
+  .grid-2{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:56px; align-items:center; }
+  .grid-3{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
+  .grid-4{ display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:20px; }
+  @media (max-width:880px){
+    .grid-2{ grid-template-columns:1fr; gap:36px; }
+    .grid-3{ grid-template-columns:1fr; }
+    .grid-4{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:560px){ .grid-4{ grid-template-columns:1fr; } }
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:14px 26px; border-radius:999px; font-weight:600; font-size:0.95rem;
+    cursor:pointer; border:1px solid transparent;
+    transition:transform 0.25s ease, background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+    text-align:center; max-width:100%;
+  }
+  .btn-primary{ background:var(--leaf); color:#fff; }
+  .btn-primary:hover{ background:var(--forest); transform:translateY(-2px); }
+  .btn-ghost{ border-color:var(--forest); color:var(--forest); background:transparent; }
+  .btn-ghost:hover{ background:var(--forest); color:#fff; transform:translateY(-2px); }
+  .btn-light{ background:#fff; color:var(--forest); }
+  .btn-light:hover{ background:var(--lime); transform:translateY(-2px); }
+  .btn:focus-visible{ outline:2px solid var(--leaf); outline-offset:3px; }
+
+  .card-shadow{ box-shadow:0 18px 44px -22px rgba(47,74,44,0.35); }
+
+  /* ============ NAV ============ */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(247,246,236,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{ display:flex; align-items:center; justify-content:space-between; padding-block:14px; }
+  .brand{ display:flex; align-items:center; gap:10px; font-family:var(--font-display); font-weight:700; font-size:1.3rem; color:var(--forest); }
+  .brand svg{ width:30px; height:30px; flex-shrink:0; }
+  .nav-links{ display:flex; align-items:center; gap:30px; }
+  .nav-links a{ font-size:0.92rem; color:var(--forest); font-weight:500; opacity:0.8; transition:opacity 0.2s ease; }
+  .nav-links a:hover{ opacity:1; color:var(--leaf); }
+  .nav-cta{ display:flex; align-items:center; gap:18px; }
+  .menu-toggle{ display:none; background:none; border:1px solid var(--line); color:var(--forest); border-radius:8px; padding:8px 10px; cursor:pointer; }
+  @media (max-width:880px){
+    .nav-links{ display:none; }
+    .menu-toggle{ display:inline-flex; }
+    .nav-links.open{
+      display:flex; flex-direction:column; align-items:flex-start; gap:18px;
+      position:absolute; top:100%; left:0; right:0;
+      background:var(--cream); padding:24px; border-bottom:1px solid var(--line);
+    }
+  }
+  @media (max-width:480px){ .nav-cta .btn-primary{ display:none; } }
+
+  /* ============ HERO ============ */
+  .hero{ padding-top:56px; padding-bottom:0; }
+  .hero-photo{
+    position:relative;
+    min-height:560px; display:flex; align-items:center;
+  }
+  .hero-photo img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; border-radius:0 0 40px 40px; }
+  .hero-photo::after{
+    content:""; position:absolute; inset:0; z-index:1; border-radius:0 0 40px 40px;
+    background:linear-gradient(100deg, rgba(20,32,18,0.82) 0%, rgba(20,32,18,0.55) 38%, rgba(20,32,18,0.12) 68%, rgba(20,32,18,0.02) 100%);
+  }
+  .hero-content{ position:relative; z-index:2; padding:80px 0 120px; width:100%; }
+  .hero-content .container{ max-width:760px; margin:0; }
+  .hero h1{ color:#fff; margin-bottom:20px; }
+  .hero h1 em{ color:var(--lime); }
+  .hero p.lead{ color:rgba(255,255,255,0.86); }
+  .hero-cta{ display:flex; gap:14px; flex-wrap:wrap; margin-top:32px; }
+
+  .hero-badge{
+    position:absolute; z-index:3; right:36px; bottom:-44px;
+    width:118px; height:118px; border-radius:50%;
+    background:var(--cream-2); display:flex; align-items:center; justify-content:center;
+    box-shadow:0 14px 30px -10px rgba(47,74,44,0.4);
+  }
+  .hero-badge svg{ width:100%; height:100%; }
+  #badgeSpin{ transform-origin:60px 60px; animation:spin 40s linear infinite; }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  @media (max-width:720px){ .hero-badge{ display:none; } }
+
+  .feature-strip{
+    position:relative; z-index:2; margin-top:-58px;
+  }
+  .feature-strip .container{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+  @media (max-width:720px){ .feature-strip .container{ grid-template-columns:1fr; } }
+  .feature-card{
+    background:var(--cream-2); border-radius:16px; padding:22px 24px;
+    display:flex; align-items:center; gap:14px;
+  }
+  .feature-card svg{ width:34px; height:34px; color:var(--leaf); flex-shrink:0; }
+  .feature-card .ft-title{ font-weight:700; font-size:0.98rem; color:var(--forest); }
+  .feature-card .ft-sub{ font-size:0.83rem; color:var(--sage); margin-top:2px; }
+
+  /* ============ STATS ============ */
+  .stats-section{ padding-top:148px; }
+  @media (max-width:720px){ .stats-section{ padding-top:96px; } }
+  .stat-card{
+    border-radius:16px; padding:28px 22px; text-align:left;
+  }
+  .stat-card.alt{ background:var(--lime); }
+  .stat-card.plain{ background:var(--cream-2); }
+  .stat-num{ font-family:var(--font-mono); font-size:clamp(1.7rem,3vw,2.2rem); font-weight:600; color:var(--forest); }
+  .stat-label{ font-size:0.86rem; color:var(--sage); margin-top:6px; }
+
+  /* ============ SOBRE ============ */
+  .about-photo{ border-radius:var(--radius); overflow:hidden; aspect-ratio:4/5; }
+  .about-photo img{ width:100%; height:100%; object-fit:cover; }
+  .pull{
+    font-family:var(--font-display); font-style:italic; font-weight:500;
+    font-size:clamp(1.2rem,2.2vw,1.6rem); color:var(--forest);
+    border-left:3px solid var(--leaf); padding-left:22px; margin:28px 0;
+    line-height:1.45;
+  }
+  .values-row{ display:flex; gap:10px; flex-wrap:wrap; margin-top:24px; }
+  .value-chip{
+    font-family:var(--font-mono); font-size:0.76rem; letter-spacing:0.04em;
+    background:var(--cream-2); border:1px solid var(--line); border-radius:999px; padding:8px 16px; color:var(--forest);
+  }
+
+  /* ============ PROGRAMA / KIT ============ */
+  .kit-wrap{ display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,0.95fr); gap:36px; align-items:start; }
+  @media (max-width:920px){ .kit-wrap{ grid-template-columns:1fr; } }
+
+  .ticket{ background:var(--cream-2); border-radius:var(--radius); padding:34px; }
+  .price-row{ display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    border-bottom:1px dashed var(--line); padding-bottom:22px; margin-bottom:22px; }
+  .price{ font-family:var(--font-mono); font-size:clamp(1.9rem,4vw,2.4rem); color:var(--leaf); font-weight:600; }
+  .price-label{ font-size:0.8rem; color:var(--sage); text-transform:uppercase; letter-spacing:0.08em; }
+
+  .kit-list{ display:flex; flex-direction:column; gap:15px; }
+  .kit-list li{ display:flex; gap:12px; align-items:flex-start; color:var(--forest); font-size:0.97rem; }
+  .kit-list svg{ flex-shrink:0; margin-top:3px; width:18px; height:18px; color:var(--leaf); }
+
+  .stamp{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--font-mono); font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase;
+    border:1px solid var(--clay); color:var(--clay); border-radius:6px; padding:6px 12px;
+    transform:rotate(-2deg); margin-top:24px;
+  }
+
+  .side-photo{ border-radius:var(--radius); overflow:hidden; aspect-ratio:16/11; margin-bottom:18px; }
+  .side-photo img{ width:100%; height:100%; object-fit:cover; }
+  .vant-card{
+    background:var(--lime); border-radius:14px; padding:18px 20px; margin-bottom:12px;
+  }
+  .vant-card p{ margin:0; color:var(--forest); font-size:0.93rem; font-weight:500; }
+
+  /* ============ CLUBE — photo cards ============ */
+  .photo-card{
+    background:var(--cream-2); border-radius:var(--radius); overflow:hidden;
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .photo-card:hover{ transform:translateY(-4px); }
+  .photo-card .pc-img{ aspect-ratio:4/3; overflow:hidden; }
+  .photo-card .pc-img img{ width:100%; height:100%; object-fit:cover; }
+  .photo-card .pc-body{ padding:20px 20px 22px; }
+  .pc-tag{
+    display:inline-block; font-family:var(--font-mono); font-size:0.68rem; letter-spacing:0.06em; text-transform:uppercase;
+    background:var(--lime); color:var(--forest); border-radius:6px; padding:4px 10px; margin-bottom:10px;
+  }
+  .photo-card h3{ font-size:1.05rem; }
+  .photo-card p{ font-size:0.92rem; margin:0; }
+
+  /* ============ PARCERIAS ============ */
+  .partner-photo{ border-radius:var(--radius); overflow:hidden; aspect-ratio:4/5; }
+  .partner-photo img{ width:100%; height:100%; object-fit:cover; }
+  .partner-tag{
+    display:inline-block; font-family:var(--font-mono); font-size:0.76rem; letter-spacing:0.05em;
+    color:var(--forest); background:var(--lime); border-radius:999px; padding:6px 16px; margin-bottom:16px;
+  }
+  .col-title{ font-family:var(--font-mono); font-size:0.76rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--leaf); margin-bottom:14px; }
+  .check-list{ display:flex; flex-direction:column; gap:13px; }
+  .check-list li{ display:flex; gap:10px; align-items:flex-start; color:var(--forest); font-size:0.95rem; }
+  .check-list svg{ flex-shrink:0; margin-top:3px; width:17px; height:17px; color:var(--leaf); }
+
+  /* ============ PILARES ============ */
+  .pilar{ display:grid; grid-template-columns:60px 1fr; gap:20px; padding:26px 0; border-bottom:1px solid var(--line); }
+  .pilar:last-child{ border-bottom:none; }
+  .pilar-num{ font-family:var(--font-mono); font-size:1.5rem; color:var(--leaf-light); }
+  .pilar h3{ margin-bottom:6px; }
+  .pilar p{ margin:0; max-width:560px; }
+
+  /* ============ CTA BANNER + FORM ============ */
+  .cta-banner{
+    position:relative; border-radius:var(--radius); overflow:hidden;
+    padding:72px 40px; text-align:center;
+  }
+  .cta-banner img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
+  .cta-banner::after{
+    content:""; position:absolute; inset:0; z-index:1;
+    background:linear-gradient(180deg, rgba(24,38,21,0.55), rgba(24,38,21,0.82));
+  }
+  .cta-inner{ position:relative; z-index:2; max-width:640px; margin:0 auto; }
+  .cta-banner h2{ color:#fff; }
+  .cta-banner p{ color:rgba(255,255,255,0.86); margin:0 auto 28px; max-width:520px; }
+
+  .form-card{
+    background:var(--cream-2); border-radius:var(--radius); padding:36px;
+    margin-top:-64px; position:relative; z-index:3;
+  }
+  .roles{ display:flex; gap:12px; flex-wrap:wrap; margin:22px 0 28px; }
+  .role-chip{
+    font-family:var(--font-mono); font-size:0.85rem; letter-spacing:0.03em;
+    border:1px solid var(--line); border-radius:999px; padding:10px 20px;
+    cursor:pointer; background:transparent; color:var(--forest);
+    transition:all 0.2s ease;
+  }
+  .role-chip:hover{ border-color:var(--leaf); }
+  .role-chip.active{ background:var(--leaf); color:#fff; border-color:var(--leaf); }
+
+  form.joinform{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  form.joinform input{
+    width:100%; background:var(--cream); border:1px solid var(--line); border-radius:10px;
+    padding:14px 16px; color:var(--forest); font-family:var(--font-body); font-size:0.95rem;
+  }
+  form.joinform input::placeholder{ color:var(--sage); }
+  form.joinform input:focus-visible{ outline:2px solid var(--leaf); outline-offset:2px; }
+  form.joinform .full{ grid-column:1 / -1; }
+  @media (max-width:560px){ form.joinform{ grid-template-columns:1fr; } }
+
+  .form-note{ font-size:0.85rem; margin-top:14px; color:var(--sage); }
+  .confirm-msg{
+    display:none; margin-top:18px; padding:14px 18px; border-radius:10px;
+    background:var(--lime); border:1px solid var(--leaf); color:var(--forest); font-size:0.92rem;
+  }
+  .confirm-msg.show{ display:block; }
+
+  /* ============ FOOTER ============ */
+  footer{ background:var(--forest); color:rgba(247,246,236,0.92); padding:52px 0 32px; margin-top:0; }
+  footer .brand{ color:#fff; }
+  .foot-inner{ display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:24px; }
+  .foot-tag{ color:rgba(247,246,236,0.65); font-size:0.88rem; margin-top:6px; }
+  .foot-links{ display:flex; gap:24px; flex-wrap:wrap; }
+  .foot-links a{ color:rgba(247,246,236,0.78); font-size:0.88rem; }
+  .foot-links a:hover{ color:var(--lime); }
+  .foot-bottom{ border-top:1px solid rgba(247,246,236,0.16); margin-top:36px; padding-top:20px; font-size:0.8rem; color:rgba(247,246,236,0.55); }
+
+  /* ============ SCROLL REVEAL ============ */
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.is-visible{ opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="#inicio" class="brand">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="20" cy="20" r="18" stroke="#5C8C42" stroke-width="1.6"/>
+        <circle cx="20" cy="20" r="4.5" fill="#5C8C42"/>
+        <g stroke="#5C8C42" stroke-width="1.2" opacity="0.85">
+          <line x1="20" y1="20" x2="20" y2="7"/><line x1="20" y1="20" x2="30.8" y2="14"/>
+          <line x1="20" y1="20" x2="30.8" y2="26"/><line x1="20" y1="20" x2="20" y2="33"/>
+          <line x1="20" y1="20" x2="9.2" y2="26"/><line x1="20" y1="20" x2="9.2" y2="14"/>
+        </g>
+        <g fill="#5C8C42">
+          <circle cx="20" cy="7" r="2"/><circle cx="30.8" cy="14" r="2"/><circle cx="30.8" cy="26" r="2"/>
+          <circle cx="20" cy="33" r="2"/><circle cx="9.2" cy="26" r="2"/><circle cx="9.2" cy="14" r="2"/>
+        </g>
+      </svg>
+      MATOPIPA
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#programa">Programa</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#clube">Clube</a>
+      <a href="#parcerias">Parcerias</a>
+      <a href="#pilares">Pilares</a>
+      <a href="#participe">Participe</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#participe" class="btn btn-primary" style="padding:10px 22px;">Fazer parte</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="inicio">
+  <div class="hero-photo">
+    <img src="https://images.pexels.com/photos/35101080/pexels-photo-35101080.jpeg?auto=compress&cs=tinysrgb&w=1800" alt="Campo agrícola visto do alto, dividido em pequenas glebas verdes" loading="eager">
+    <div class="hero-content">
+      <div class="container">
+        <div class="eyebrow" style="color:var(--lime);">Cooperativismo · Fé · Empreendedorismo</div>
+        <h1>O campo já produz.<br>Faltava a <em>engrenagem</em>.</h1>
+        <p class="lead">MATOPIPA é a plataforma de inclusão produtiva conduzida pelo cooperativismo. Apoiamos o pequeno produtor desde a produção até a colocação do produto no mercado — para gerar mais resultado e mais rentabilidade para quem planta.</p>
+        <div class="hero-cta">
+          <a href="#programa" class="btn btn-light">Conhecer o Programa de Empreendedores</a>
+          <a href="#participe" class="btn btn-ghost" style="border-color:#fff; color:#fff;">Quero fazer parte</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-badge" aria-hidden="true">
+      <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <g id="badgeSpin"></g>
+        <circle cx="60" cy="60" r="30" fill="none" stroke="#DCEBA8" stroke-width="1"/>
+        <g id="badgeNet"></g>
+      </svg>
+    </div>
+  </div>
+
+  <div class="feature-strip">
+    <div class="container">
+      <div class="feature-card card-shadow">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2C8 6 6 10 6 13a6 6 0 0012 0c0-3-2-7-6-11z" stroke="currentColor" stroke-width="1.6"/></svg>
+        <div><div class="ft-title">Produção</div><div class="ft-sub">Apoio direto ao pequeno produtor</div></div>
+      </div>
+      <div class="feature-card card-shadow">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="8" width="18" height="12" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 8V6a4 4 0 018 0v2" stroke="currentColor" stroke-width="1.6"/></svg>
+        <div><div class="ft-title">Indústria</div><div class="ft-sub">A engrenagem que faltava</div></div>
+      </div>
+      <div class="feature-card card-shadow">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="20" r="1.4" fill="currentColor"/><circle cx="18" cy="20" r="1.4" fill="currentColor"/><path d="M3 4h2l2.4 12.2a2 2 0 002 1.8h8.2a2 2 0 002-1.6L21 9H6" stroke="currentColor" stroke-width="1.6"/></svg>
+        <div><div class="ft-title">Mercado</div><div class="ft-sub">Colocação do produto com rentabilidade</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<section class="stats-section reveal">
+  <div class="container">
+    <div class="grid-4">
+      <div class="stat-card alt"><div class="stat-num">R$ 1.680</div><div class="stat-label">Kit de adesão ao Programa</div></div>
+      <div class="stat-card plain"><div class="stat-num">14</div><div class="stat-label">Camisetas institucionais no kit</div></div>
+      <div class="stat-card plain"><div class="stat-num">04</div><div class="stat-label">Pilares estratégicos do projeto</div></div>
+      <div class="stat-card alt"><div class="stat-num">05</div><div class="stat-label">Valores que guiam o MATOPIPA</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOBRE ============ -->
+<section class="reveal" id="sobre">
+  <div class="container grid-2">
+    <div>
+      <div class="eyebrow">Sobre nós</div>
+      <h2>Um modelo que une fé, propósito e empreendedorismo</h2>
+      <p>Criamos um modelo inovador de geração de receita que une fé, propósito e empreendedorismo: o Programa de Empreendedores MATOPIPA (PEM).</p>
+      <p class="pull">"O problema não é a falta de produção. É a falta de uma engrenagem industrial e logística eficiente. Nós somos essa engrenagem."</p>
+      <p>Oportunidades como essa são raras. O mercado existe, e esta proposta é acessível a qualquer pessoa disposta a trabalhar, se dedicar e seguir em frente. É assim que se alcançam os resultados.</p>
+      <div class="values-row">
+        <span class="value-chip">Ética</span>
+        <span class="value-chip">Respeito</span>
+        <span class="value-chip">Transparência</span>
+        <span class="value-chip">Inovação</span>
+        <span class="value-chip">Qualidade</span>
+      </div>
+    </div>
+    <div class="about-photo card-shadow">
+      <img src="https://images.pexels.com/photos/4975357/pexels-photo-4975357.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Produtor colhendo hortaliças frescas em campo verde" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROGRAMA ============ -->
+<section class="tint reveal" id="programa">
+  <div class="container">
+    <div class="eyebrow">Programa de Empreendedores MATOPIPA</div>
+    <h2>Faça parte do projeto com o kit de adesão ao negócio</h2>
+    <p class="lead">Um ponto de entrada simples e direto: você adere ao Programa de Empreendedores MATOPIPA (PEM) e recebe tudo o que precisa para começar a caminhar com o projeto.</p>
+
+    <div class="kit-wrap" style="margin-top:44px;">
+      <div class="ticket card-shadow">
+        <div class="price-row">
+          <div>
+            <div class="price">R$ 1.680,00</div>
+            <div class="price-label">Kit de adesão · pagamento único</div>
+          </div>
+        </div>
+        <ul class="kit-list">
+          <li><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> 14 camisetas com design institucional do Projeto MATOPIPA</li>
+          <li><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Livro <em>A Bíblia e o Cooperativismo</em></li>
+          <li><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Carteirinha de membro do projeto</li>
+          <li><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Acesso ao App/Portal de Treinamento — técnicas de cultivo e gestão</li>
+          <li><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Certificado de Sócio Fundador da implantação do projeto</li>
+        </ul>
+        <span class="stamp">Sócio Fundador</span>
+      </div>
+
+      <div>
+        <div class="side-photo card-shadow">
+          <img src="https://images.pexels.com/photos/4975353/pexels-photo-4975353.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Cesto com colheita fresca de frutas e vegetais" loading="lazy">
+        </div>
+        <div class="col-title">Vantagens de quem entra agora</div>
+        <div class="vant-card"><p>Pontos de benefício empreendedor</p></div>
+        <div class="vant-card"><p>Rentabilidade indireta</p></div>
+        <div class="vant-card"><p>Aumento na geração de renda</p></div>
+        <div class="vant-card"><p>Apoio direto à sustentabilidade e à inclusão produtiva</p></div>
+        <a href="#participe" class="btn btn-primary" style="margin-top:6px; width:100%;">Quero meu kit</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLUBE DE VANTAGENS ============ -->
+<section class="reveal" id="clube">
+  <div class="container">
+    <div class="eyebrow">Clube de Vantagens MATOPIPA</div>
+    <h2>Poder de compra real para quem vive do campo</h2>
+    <p class="lead">Aqui conectamos bens de consumo às famílias do campo de forma facilitada. O Clube une a produção agrícola ao consumo das famílias, transformando o esforço do campo em poder de compra real.</p>
+
+    <div class="grid-4" style="margin-top:40px;">
+      <div class="photo-card card-shadow">
+        <div class="pc-img"><img src="https://images.pexels.com/photos/4975359/pexels-photo-4975359.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Produtor sorrindo com cesto de colheita" loading="lazy"></div>
+        <div class="pc-body"><span class="pc-tag">Benefício</span><h3>Cartão fidelidade</h3><p>Preços diferenciados para as famílias cadastradas no projeto.</p></div>
+      </div>
+      <div class="photo-card card-shadow">
+        <div class="pc-img"><img src="https://images.pexels.com/photos/9124244/pexels-photo-9124244.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Campo de cultivo com fileiras verdes" loading="lazy"></div>
+        <div class="pc-body"><span class="pc-tag">Benefício</span><h3>Acesso facilitado</h3><p>Mais facilidade para obter produtos domésticos e de uso agrícola.</p></div>
+      </div>
+      <div class="photo-card card-shadow">
+        <div class="pc-img"><img src="https://images.pexels.com/photos/17031600/pexels-photo-17031600.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Vista aérea de plantação verde" loading="lazy"></div>
+        <div class="pc-body"><span class="pc-tag">Benefício</span><h3>Fundo de reserva</h3><p>Uma reserva coletiva pensada para os momentos de imprevisto.</p></div>
+      </div>
+      <div class="photo-card card-shadow">
+        <div class="pc-img"><img src="https://images.pexels.com/photos/4975357/pexels-photo-4975357.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Produtor cuidando da colheita no campo" loading="lazy"></div>
+        <div class="pc-body"><span class="pc-tag">Benefício</span><h3>Seguro agrícola</h3><p>Proteção agrícola e prestamista para o produtor e sua família.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PARCERIAS ============ -->
+<section class="tint reveal" id="parcerias">
+  <div class="container grid-2">
+    <div class="partner-photo card-shadow">
+      <img src="https://images.pexels.com/photos/8069428/pexels-photo-8069428.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Aperto de mãos selando uma parceria" loading="lazy">
+    </div>
+    <div>
+      <div class="eyebrow">Parcerias</div>
+      <span class="partner-tag">Modelo de parceria · Varejista de móveis</span>
+      <h2>Conectamos bens de consumo às famílias do campo</h2>
+      <p class="lead" style="margin-bottom:24px;">O MATOPIPA atua como agente de compensação financeira entre a agroindústria e o parceiro, reduzindo custo de cobrança e risco de crédito individual.</p>
+
+      <div class="col-title">Como funciona</div>
+      <ul class="check-list" style="margin-bottom:24px;">
+        <li><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Redução dos custos de cobrança e do risco de crédito individual</li>
+        <li><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Borderô de pagamento único da agroindústria</li>
+      </ul>
+
+      <div class="col-title">Benefícios para o parceiro</div>
+      <ul class="check-list">
+        <li><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Aumento de vendas</li>
+        <li><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Inadimplência zero</li>
+        <li><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Selo ESG</li>
+        <li><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Marketing direcionado e gratuito</li>
+        <li><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Eficiência logística</li>
+      </ul>
+      <a href="#participe" class="btn btn-ghost" style="margin-top:28px; border-color:var(--forest);">Seja um parceiro</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PILARES ============ -->
+<section class="reveal" id="pilares">
+  <div class="container">
+    <div class="eyebrow">Pilares Estratégicos</div>
+    <h2>A estrutura que sustenta o projeto</h2>
+    <div style="margin-top:32px;">
+      <div class="pilar">
+        <span class="pilar-num">01</span>
+        <div><h3>Crédito Estruturado e Moeda Verde</h3><p>Mecanismos de crédito pensados para o ciclo produtivo do pequeno produtor, com incentivo a práticas sustentáveis.</p></div>
+      </div>
+      <div class="pilar">
+        <span class="pilar-num">02</span>
+        <div><h3>Centros de Experiência e Serviços <span style="font-weight:400; font-size:0.9rem; color:var(--sage);">(Showrooms Comunitários)</span></h3><p>Espaços de referência onde o produtor encontra serviços, capacitação e contato direto com o mercado.</p></div>
+      </div>
+      <div class="pilar">
+        <span class="pilar-num">03</span>
+        <div><h3>Logística Reversa e Eficiência Operacional</h3><p>Fluxos logísticos que reduzem perdas e custos, do escoamento da produção à entrega final.</p></div>
+      </div>
+      <div class="pilar">
+        <span class="pilar-num">04</span>
+        <div><h3>Vantagens Coletivas e Identidade Regional</h3><p>Benefícios construídos em conjunto, valorizando a identidade e a força produtiva de cada região.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAÇA PARTE ============ -->
+<section class="reveal" id="participe">
+  <div class="container">
+    <div class="cta-banner card-shadow">
+      <img src="https://images.pexels.com/photos/17031600/pexels-photo-17031600.jpeg?auto=compress&cs=tinysrgb&w=1800" alt="Plantação verde vista do alto" loading="lazy">
+      <div class="cta-inner">
+        <div class="eyebrow" style="color:var(--lime);">Faça parte</div>
+        <h2>Seja um empreendedor que veste o propósito. <em style="color:var(--lime); font-style:italic;">Vista MATOPIPA.</em></h2>
+        <p>Diga como você quer entrar no projeto e deixe seus dados — nossa equipe entra em contato.</p>
+      </div>
+    </div>
+
+    <div class="form-card card-shadow" style="max-width:760px; margin-inline:auto;">
+      <div class="roles" role="group" aria-label="Quero fazer parte como">
+        <button type="button" class="role-chip" data-role="Empreendedor">Empreendedor</button>
+        <button type="button" class="role-chip" data-role="Produtor rural">Produtor rural</button>
+        <button type="button" class="role-chip" data-role="Loja parceira">Loja parceira</button>
+        <button type="button" class="role-chip" data-role="Médico parceiro">Médico parceiro</button>
+      </div>
+
+      <form class="joinform" id="joinForm">
+        <input type="text" name="nome" placeholder="Seu nome" required>
+        <input type="tel" name="contato" placeholder="WhatsApp ou e-mail" required>
+        <input type="hidden" name="papel" id="papelInput" value="">
+        <div class="full">
+          <button type="submit" class="btn btn-primary">Quero fazer parte</button>
+          <p class="form-note">Ao enviar, você será contatado pela equipe MATOPIPA com os próximos passos.</p>
+          <div class="confirm-msg" id="confirmMsg">Recebemos seu interesse! Em breve a equipe MATOPIPA entra em contato. ✅</div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="foot-inner">
+      <div>
+        <div class="brand" style="font-size:1.15rem;">MATOPIPA</div>
+        <div class="foot-tag">Promovendo a Inclusão Produtiva</div>
+      </div>
+      <div class="foot-links">
+        <a href="#programa">Programa</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#clube">Clube</a>
+        <a href="#parcerias">Parcerias</a>
+        <a href="#pilares">Pilares</a>
+        <a href="#participe">Participe</a>
+      </div>
+    </div>
+    <div class="foot-bottom">© 2026 MATOPIPA. Plataforma de inclusão produtiva conduzida pelo cooperativismo.</div>
+  </div>
+</footer>
+
+<!-- ATENÇÃO: conecte o formulário #joinForm a um backend, planilha ou serviço de e-mail/WhatsApp real antes de publicar o site. Hoje ele só mostra uma confirmação visual, sem enviar dados a lugar nenhum. -->
+
+<script>
+  // ---------- Selo circular "engrenagem de grãos" no hero ----------
+  (function(){
+    const NS = "http://www.w3.org/2000/svg";
+    const cx = 60, cy = 60, r = 50;
+    const teeth = document.getElementById('badgeSpin');
+    const count = 16;
+    for(let i=0;i<count;i++){
+      const angle = (i / count) * Math.PI * 2;
+      const x = cx + r * Math.cos(angle);
+      const y = cy + r * Math.sin(angle);
+      const deg = (angle * 180/Math.PI) + 90;
+      const spike = document.createElementNS(NS,'ellipse');
+      spike.setAttribute('cx', x); spike.setAttribute('cy', y);
+      spike.setAttribute('rx', 3); spike.setAttribute('ry', 8);
+      spike.setAttribute('transform', `rotate(${deg} ${x} ${y})`);
+      spike.setAttribute('fill', i % 2 === 0 ? '#5C8C42' : '#CC7A42');
+      teeth.appendChild(spike);
+    }
+    const network = document.getElementById('badgeNet');
+    const nr = 28; const nodeCount = 6;
+    const hub = document.createElementNS(NS,'circle');
+    hub.setAttribute('cx', cx); hub.setAttribute('cy', cy); hub.setAttribute('r', 5);
+    hub.setAttribute('fill', '#2F4A2C');
+    for(let i=0;i<nodeCount;i++){
+      const angle = (i / nodeCount) * Math.PI * 2 - Math.PI/2;
+      const x = cx + nr * Math.cos(angle);
+      const y = cy + nr * Math.sin(angle);
+      const line = document.createElementNS(NS,'line');
+      line.setAttribute('x1', cx); line.setAttribute('y1', cy);
+      line.setAttribute('x2', x); line.setAttribute('y2', y);
+      line.setAttribute('stroke', '#8FB36B'); line.setAttribute('stroke-width', '1.2');
+      network.appendChild(line);
+      const node = document.createElementNS(NS,'circle');
+      node.setAttribute('cx', x); node.setAttribute('cy', y); node.setAttribute('r', 3);
+      node.setAttribute('fill', '#8FB36B');
+      network.appendChild(node);
+    }
+    network.appendChild(hub);
+  })();
+
+  // ---------- Menu mobile ----------
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // ---------- Seletor de papel ----------
+  const roleChips = document.querySelectorAll('.role-chip');
+  const papelInput = document.getElementById('papelInput');
+  roleChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      roleChips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      papelInput.value = chip.dataset.role;
+    });
+  });
+
+  // ---------- Envio do formulário (apenas confirmação visual local) ----------
+  const form = document.getElementById('joinForm');
+  const confirmMsg = document.getElementById('confirmMsg');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    confirmMsg.classList.add('show');
+    form.reset();
+    roleChips.forEach(c => c.classList.remove('active'));
+  });
+
+  // ---------- Scroll reveal ----------
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const revealEls = document.querySelectorAll('.reveal');
+  if(reduceMotion){
+    revealEls.forEach(el => el.classList.add('is-visible'));
+  } else if('IntersectionObserver' in window){
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => obs.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('is-visible'));
+  }
+</script>
+
+</body>
+</html>
