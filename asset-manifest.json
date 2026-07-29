@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.js": "./static/js/main.5d335541.js",
-    "index.html": "./index.html",
-    "main.5d335541.js.map": "./static/js/main.5d335541.js.map"
+    "main.js": "/matopipaPage/static/js/main.5d335541.js",
+    "index.html": "/matopipaPage/index.html",
+    "main.5d335541.js.map": "/matopipaPage/static/js/main.5d335541.js.map"
   },
   "entrypoints": [
     "static/js/main.5d335541.js"
