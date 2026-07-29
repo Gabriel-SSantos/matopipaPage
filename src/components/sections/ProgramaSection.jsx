@@ -74,7 +74,7 @@ export function ProgramaSection() {
               letterSpacing: "0.1em", textTransform: "uppercase",
               border: `1px solid ${TOKEN.clay}`, color: TOKEN.clay,
               borderRadius: 6, padding: "6px 12px",
-              transform: "rotate(-2deg)", marginTop: 24, display: "inline-block",
+              transform: "rotate(-2deg)", marginTop: 24, 
             }}>
               Sócio Fundador
             </span>
