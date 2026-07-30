@@ -32,11 +32,14 @@ export function ProgramaSection() {
       <Container>
         <Eyebrow>Programa de Empreendedores MATOPIPA</Eyebrow>
         <h2 style={{ fontFamily: "'Fraunces', Georgia, serif", fontWeight: 700, color: TOKEN.forest, marginBottom: 18 }}>
-          Faça parte do projeto com o kit de adesão ao negócio
+          Jovem filho de produtor ou empreendedor? Faça parte do projeto com o kit de adesão ao negócio
         </h2>
-        <p style={{ fontSize: "1.14rem", color: TOKEN.sage, maxWidth: 600, marginBottom: 44 }}>
+        <p style={{ fontSize: "1.14rem", color: TOKEN.sage, maxWidth: 600, marginBottom: 24 }}>
           Um ponto de entrada simples e direto: você adere ao Programa de Empreendedores
           MATOPIPA (PEM) e recebe tudo o que precisa para começar a caminhar com o projeto.
+        </p>
+         <p style={{ fontSize: "1rem", color: TOKEN.sage, marginBottom: 44 }}>
+          Enquanto eles adiquirem o kit de produção, os produtores adiquirem cotas da cooperativa! 
         </p>
 
         <div className="kit-wrap">
@@ -109,6 +112,7 @@ export function ProgramaSection() {
             <Btn href="#participe" full>Quero meu kit</Btn>
           </div>
         </div>
+        
       </Container>
     </RevealSection>
   );
