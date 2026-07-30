@@ -15,7 +15,10 @@ export function HeroSection() {
   return (
     <section id="inicio" style={{ paddingTop: 56, paddingBottom: 0, background: TOKEN.cream }}>
       {/* Foto de fundo com overlay */}
-      <div style={{ position: "relative", minHeight: 560, display: "flex", alignItems: "center" }}>
+      <div style={{ 
+        position: "relative", 
+        minHeight: 560, 
+        display: "flex", alignItems: "center" }}>
         <img
           src={PHOTO.hero}
           alt="Campo agrícola visto do alto, dividido em pequenas glebas verdes"

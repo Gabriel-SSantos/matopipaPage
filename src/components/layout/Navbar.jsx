@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { TOKEN } from "../../constants/tokens";
-import { LogoIcon } from "../common/LogoIcon";
+import logo from '../img/logoMatopipa.png'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // COMPONENTE — Navbar
@@ -27,8 +27,9 @@ export function Navbar() {
 
   return (
     <header style={{
-      position: "sticky", top: 0, zIndex: 50,
-      background: "rgba(247,246,236,0.92)",
+      position: "sticky", top: 0, 
+      zIndex: 50,
+      background: "rgba(170, 248, 74, 0.92)",
       backdropFilter: "blur(10px)",
       borderBottom: `1px solid ${TOKEN.line}`,
     }}>
@@ -39,11 +40,12 @@ export function Navbar() {
       }}>
         {/* Logo / Brand */}
         <a href="#inicio" style={{
-          display: "flex", alignItems: "center", gap: 10,
-          fontFamily: "'Fraunces', Georgia, serif", fontWeight: 700, fontSize: "1.3rem", color: TOKEN.forest,
+         maxWidth: 120,
         }}>
-          <LogoIcon />
-          MATOPIPA
+            <img 
+            src={logo}
+            alt="Logo MATOPIPA"
+            />
         </a>
 
         {/* Links desktop */}
